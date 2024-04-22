@@ -4,37 +4,13 @@
 <!-- PHASE 1 -->
 ## Install everything
 
-
 ```bash
-sudo apt install wireshark -y && sudo apt install net-tools -y && sudo apt install traceroute -y 
-```
-
-```bash
-sudo apt-get install python3 python3-pip build-essential checkinstall zlib1g-dev cmake gcc libtool libssl-dev make ninja-build git astyle cmake gcc ninja-build libssl-dev python3-pytest python3-pytest-xdist unzip xsltproc doxygen graphviz python3-yaml valgrind -y
-```
-
-```bash
-sudo apt-get install python3-pip
+sudo apt-get install python3 python3-pip build-essential checkinstall zlib1g-dev cmake gcc libtool libssl-dev make ninja-build git astyle cmake gcc ninja-build libssl-dev python3-pytest python3-pytest-xdist unzip xsltproc doxygen graphviz python3-yaml valgrind wireshark net-tools traceroute -y
 ```
 
 ```bash
 sudo pip3 install python-pytun
 ```
-
-```bash 
-sudo apt-get install git -y
-```
-
-```bash
-sudo apt update
-sudo apt install build-essential checkinstall zlib1g-dev -y
-```
-
-```bash
-sudo apt install cmake gcc libtool libssl-dev make ninja-build git -y
-sudo apt install astyle cmake gcc ninja-build libssl-dev python3-pytest python3-pytest-xdist unzip xsltproc doxygen graphviz python3-yaml valgrind -y
-```
-
 
 <!-- PHASE 2 -->
 ## Deploy Open5GS
