@@ -458,55 +458,105 @@ amf:
 nano ~/5G_PQ/open5gs/install/etc/open5gs/smf.yaml
 ```
 
-**REPLACE 127.0.0.5 WITHT YOUR MACHINE IP ADDRESS**
+**REPLACE 127.0.0.4 WITHT YOUR MACHINE IP ADDRESS**
 
 ```diff
-amf:
+smf:
     sbi:
-      - addr: 127.0.0.5
+      - addr: 127.0.0.4
         port: 7777
-    ngap:
--      - addr: 127.0.0.5
-+      - addr: 192.168.122.91
+    pfcp:
+-      - addr: 127.0.0.4
+-      - addr: ::1
++      - addr: 192.168.122.144
++      #- addr: ::1
+    gtpc:
+      - addr: 127.0.0.4
+-      - addr: ::1
++      #- addr: ::1
+    gtpu:
+      - addr: 127.0.0.4
+-      - addr: ::1
++      #- addr: ::1
     metrics:
-      - addr: 127.0.0.5
+      - addr: 127.0.0.4
         port: 9090
-    guami:
-      - plmn_id:
--          mcc: 999
--          mnc: 70
-+          mcc: 001
-+          mnc: 01
-        amf_id:
-          region: 2
-          set: 1
-    tai:
-      - plmn_id:
--          mcc: 999
--          mnc: 70
-+          mcc: 001
-+          mnc: 01
-+        tac: 1
-    plmn_support:
-      - plmn_id:
--          mcc: 999
--          mnc: 70
-+          mcc: 001
-+          mnc: 01
-        s_nssai:
-          - sst: 1
-    security:
-        integrity_order : [ NIA2, NIA1, NIA0 ]
-        ciphering_order : [ NEA0, NEA1, NEA2 ]
-    network_name:
-        full: Open5GS
-    amf_name: open5gs-amf0
+    subnet:
+      - addr: 10.45.0.1/16
+      - addr: 2001:db8:cafe::1/48
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+      - 2001:4860:4860::8888
+      - 2001:4860:4860::8844
+    mtu: 1400
+    ctf:
+      enabled: auto
+    freeDiameter: /home/cp/open5gs/install/etc/freeDiameter/smf.conf
+
+
+
+
+upf:
+    pfcp:
+-      - addr: 127.0.0.7
++      - addr: 192.168.122.180
+
+
 
     #.................
 
     scp:
     sbi:
-      - addr: 10.0.0.2
+
+-      - addr: 127.0.1.10
++      - addr: 10.0.0.2
         port: 7777
 
 ```
+
+
+
+
+
+
+
+
+### UPF
+
+```bash
+nano ~/5G_PQ/open5gs/install/etc/open5gs/upf.yaml
+```
+
+**REPLACE 127.0.0.7 WITHT YOUR MACHINE IP ADDRESS**
+
+
+
+
+```diff
+upf:
+    pfcp:
+-      - addr: 127.0.0.7
++      - addr: 192.168.122.180
+    gtpu:
+-      - addr: 127.0.0.7
++      - addr: 192.168.122.180
+    subnet:
+      - addr: 10.45.0.1/16
+      - addr: 2001:db8:cafe::1/48
+    metrics:
+      - addr: 127.0.0.7
+        port: 9090
+
+
+    #.................
+
+    scp:
+    sbi:
+
+-      - addr: 127.0.1.10
++      - addr: 10.0.0.2
+        port: 7777
+
+```
+
