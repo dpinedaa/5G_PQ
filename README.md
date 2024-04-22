@@ -15,28 +15,13 @@ sudo pip3 install python-pytun
 <!-- PHASE 2 -->
 ## Deploy Open5GS
 
-* Copy the zip open5gs.zip into the client and server vms
-
-REPLACE IP ADDRESSES ACCORDINGLY 
-
-**Client**
+* Unzip Open5GS
 
 ```bash
-sudo scp open5gs.zip client@192.168.122.117:~/
-```
-
-**Server**
-```bash
-sudo scp open5gs.zip server@192.168.122.89:~/
-```
-
-
-
-* Unzip and change name to open5gs in the home directory 
-
-```bash
+cd 5G_PQ
 unzip open5gs.zip
 ```
+
 
 
 ### Building Open5GS from Sources 
