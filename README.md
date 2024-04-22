@@ -15,7 +15,7 @@ sudo pip3 install python-pytun
 <!-- PHASE 2 -->
 ## Deploy Open5GS
 
-* Unzip Open5GS
+* Unzip Open5GS for the client and server vm
 
 ```bash
 cd 5G_PQ
