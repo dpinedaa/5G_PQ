@@ -189,9 +189,11 @@ sudo apt update
 ```bash
 sudo apt install -y ca-certificates curl gnupg
 ```
+
 ```bash
 sudo mkdir -p /etc/apt/keyrings
 ```
+
 ```bash
 curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
 ```
@@ -216,6 +218,7 @@ sudo apt update
 ```bash
 sudo apt install nodejs -y
 ```
+
 * Install the dependencies to run WebUI
 
 ```bash
