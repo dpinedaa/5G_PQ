@@ -603,3 +603,11 @@ find open5gs/install/etc/open5gs -type f -exec sed -i 's/127\.0\.1\.10/10\.0\.0\
 
 
 
+
+**NO TLS**
+
+```bash
+find open5gs/install/etc/open5gs -type f -exec sed -i 's/10\.0\.0\.2/192\.168\.122\.97/g' {} +
+find open5gs/install/etc/open5gs -type f -exec sed -i 's/10\.0\.0\.1/192\.168\.122\.238/g' {} +
+```
+
