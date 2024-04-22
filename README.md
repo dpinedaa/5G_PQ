@@ -10,7 +10,7 @@ sudo apt install wireshark -y && sudo apt install net-tools -y && sudo apt insta
 ```
 
 ```bash
-sudo apt-get install python3
+sudo apt-get install python3 python3-pip build-essential checkinstall zlib1g-dev cmake gcc libtool libssl-dev make ninja-build git astyle cmake gcc ninja-build libssl-dev python3-pytest python3-pytest-xdist unzip xsltproc doxygen graphviz python3-yaml valgrind -y
 ```
 
 ```bash
