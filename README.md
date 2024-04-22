@@ -326,65 +326,37 @@ cd ~/5G_PQ/open5gs
 
 
 
-#### AMF
+#### SCP
 
 
 ```bash
-nano ~/5G_PQ/open5gs/install/etc/open5gs/amf.yaml
+nano ~/5G_PQ/open5gs/install/etc/open5gs/scp.yaml
 ```
 
-**REPLACE 127.0.0.5 WITHT YOUR MACHINE IP ADDRESS**
+
 
 ```diff
-amf:
+scp:
     sbi:
-      - addr: 127.0.0.5
+-      - addr: 127.0.1.10
++      - addr: 10.0.0.2
         port: 7777
-    ngap:
--      - addr: 127.0.0.5
-+      - addr: 192.168.122.91
-    metrics:
-      - addr: 127.0.0.5
-        port: 9090
-    guami:
-      - plmn_id:
--          mcc: 999
--          mnc: 70
-+          mcc: 001
-+          mnc: 01
-        amf_id:
-          region: 2
-          set: 1
-    tai:
-      - plmn_id:
--          mcc: 999
--          mnc: 70
-+          mcc: 001
-+          mnc: 01
-+        tac: 1
-    plmn_support:
-      - plmn_id:
--          mcc: 999
--          mnc: 70
-+          mcc: 001
-+          mnc: 01
-        s_nssai:
-          - sst: 1
-    security:
-        integrity_order : [ NIA2, NIA1, NIA0 ]
-        ciphering_order : [ NEA0, NEA1, NEA2 ]
-    network_name:
-        full: Open5GS
-    amf_name: open5gs-amf0
 
-    #.................
 
-    scp:
+#...........
+
+nrf:
     sbi:
-      - addr: 10.0.0.2
+      - addr:
+-          - 127.0.0.10
+-          - ::1
++          - 127.0.0.10
++          - ::1
+
         port: 7777
 
 ```
+
 
 
 
