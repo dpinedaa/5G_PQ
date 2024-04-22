@@ -182,7 +182,8 @@ install/etc/open5gs
 
 * Download and import the Nodesource GPG key
 
-``bash
+
+```bash
 sudo apt update
 ```
 
