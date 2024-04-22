@@ -33,14 +33,7 @@ unzip open5gs.zip
 
 ```bash
 sudo apt update
-```
-
-```bash
-sudo apt install gnupg
-```
-
-```bash
-sudo apt install curl -y
+sudo apt install gnupg curl -y
 ```
 
 ```bash
