@@ -187,6 +187,34 @@ npm ci
 <!-- PHASE 3 -->
 ## Setup VPN over TLS
 
+
+
+### Server 
+
+* Unzip Server
+
+```bash
+cd 5G_PQ
+unzip server.zip
+```
+
+* Install OQS in the system 
+
+```bash
+sudo chmod +x oqs.sh
+./oqs.sh
+```
+
+
+* Run the server 
+
+```bash
+cd vpn_over_tls/src
+sudo python3 server/server.py
+```
+
+
+
 ### Client 
 
 * Unzip client 
@@ -204,6 +232,8 @@ nano config.py
 ```
 
 **REPLACE THE SERVER_IP BASED ON YOUR OWN ENVIRONMENT**
+**Client IP:** 192.168.122.91
+**Server IP:** 192.168.122.238
 
 ```diff 
 config = {
@@ -220,52 +250,289 @@ config = {
 -	"DNS_SERVER": "192.168.122.89"
 +	"DEFAULT_GW": "192.168.122.91",
 +	"DNS_SERVER": "192.168.122.238"
-
 }
-
 ```
 
 
-
-
-
-### Server 
-
-* Unzip Server
+* Install OQS in the system 
 
 ```bash
-cd 5G_PQ
-unzip server.zip
+sudo chmod +x oqs.sh
+./oqs.sh
 ```
 
 
 
 
-
-
-
-
-
-
-
-* Copy what we have to the client and server vm 
+* Run the server 
 
 ```bash
-sudo scp -r vms/client/vpn_over_tls/ client@192.168.122.117:~/
+cd vpn_over_tls/src
+sudo python3 client/client.py
 ```
+
+
+## Configure Open5GS
+
+### Server VM
+
+
+* Modify the config files 
+
+#### NRF
 
 
 ```bash
-sudo scp -r vms/server/vpn_over_tls/ server@192.168.122.89:~/
+nano ~/5G_PQ/open5gs/install/etc/open5gs/nrf.yaml
 ```
 
 
-<!-- PHASE 4 -->
-## Install OQS in the system 
+```diff
+nrf:
+    sbi:
+      - addr:
+-        - 127.0.0.10
++        - 10.0.0.1
+-        - ::1
++        #- ::1
+        port: 7777
 
 
-<!-- PHASE 5 -->
-## Test PQ algorithms
+#.......
+
+
+scp:
+    sbi:
+-        - 127.0.1.10
++        - 10.0.0.2
+        port: 7777
+
+
+```
+
+* Start NRF
+
+```bash
+cd ~/5G_PQ/open5gs
+./install/bin/open5gs-nrfd
+```
 
 
 
+### Client VM
+
+* Modify the config files 
+
+
+
+
+#### AMF
+
+
+```bash
+nano ~/5G_PQ/open5gs/install/etc/open5gs/amf.yaml
+```
+
+**REPLACE 127.0.0.5 WITHT YOUR MACHINE IP ADDRESS**
+
+```diff
+amf:
+    sbi:
+      - addr: 127.0.0.5
+        port: 7777
+    ngap:
+-      - addr: 127.0.0.5
++      - addr: 192.168.122.91
+    metrics:
+      - addr: 127.0.0.5
+        port: 9090
+    guami:
+      - plmn_id:
+-          mcc: 999
+-          mnc: 70
++          mcc: 001
++          mnc: 01
+        amf_id:
+          region: 2
+          set: 1
+    tai:
+      - plmn_id:
+-          mcc: 999
+-          mnc: 70
++          mcc: 001
++          mnc: 01
++        tac: 1
+    plmn_support:
+      - plmn_id:
+-          mcc: 999
+-          mnc: 70
++          mcc: 001
++          mnc: 01
+        s_nssai:
+          - sst: 1
+    security:
+        integrity_order : [ NIA2, NIA1, NIA0 ]
+        ciphering_order : [ NEA0, NEA1, NEA2 ]
+    network_name:
+        full: Open5GS
+    amf_name: open5gs-amf0
+
+    #.................
+
+    scp:
+    sbi:
+      - addr: 10.0.0.2
+        port: 7777
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#### AMF
+
+
+```bash
+nano ~/5G_PQ/open5gs/install/etc/open5gs/amf.yaml
+```
+
+**REPLACE 127.0.0.5 WITHT YOUR MACHINE IP ADDRESS**
+
+```diff
+amf:
+    sbi:
+      - addr: 127.0.0.5
+        port: 7777
+    ngap:
+-      - addr: 127.0.0.5
++      - addr: 192.168.122.91
+    metrics:
+      - addr: 127.0.0.5
+        port: 9090
+    guami:
+      - plmn_id:
+-          mcc: 999
+-          mnc: 70
++          mcc: 001
++          mnc: 01
+        amf_id:
+          region: 2
+          set: 1
+    tai:
+      - plmn_id:
+-          mcc: 999
+-          mnc: 70
++          mcc: 001
++          mnc: 01
++        tac: 1
+    plmn_support:
+      - plmn_id:
+-          mcc: 999
+-          mnc: 70
++          mcc: 001
++          mnc: 01
+        s_nssai:
+          - sst: 1
+    security:
+        integrity_order : [ NIA2, NIA1, NIA0 ]
+        ciphering_order : [ NEA0, NEA1, NEA2 ]
+    network_name:
+        full: Open5GS
+    amf_name: open5gs-amf0
+
+    #.................
+
+    scp:
+    sbi:
+      - addr: 10.0.0.2
+        port: 7777
+
+```
+
+
+
+
+
+
+#### SMF
+
+
+```bash
+nano ~/5G_PQ/open5gs/install/etc/open5gs/smf.yaml
+```
+
+**REPLACE 127.0.0.5 WITHT YOUR MACHINE IP ADDRESS**
+
+```diff
+amf:
+    sbi:
+      - addr: 127.0.0.5
+        port: 7777
+    ngap:
+-      - addr: 127.0.0.5
++      - addr: 192.168.122.91
+    metrics:
+      - addr: 127.0.0.5
+        port: 9090
+    guami:
+      - plmn_id:
+-          mcc: 999
+-          mnc: 70
++          mcc: 001
++          mnc: 01
+        amf_id:
+          region: 2
+          set: 1
+    tai:
+      - plmn_id:
+-          mcc: 999
+-          mnc: 70
++          mcc: 001
++          mnc: 01
++        tac: 1
+    plmn_support:
+      - plmn_id:
+-          mcc: 999
+-          mnc: 70
++          mcc: 001
++          mnc: 01
+        s_nssai:
+          - sst: 1
+    security:
+        integrity_order : [ NIA2, NIA1, NIA0 ]
+        ciphering_order : [ NEA0, NEA1, NEA2 ]
+    network_name:
+        full: Open5GS
+    amf_name: open5gs-amf0
+
+    #.................
+
+    scp:
+    sbi:
+      - addr: 10.0.0.2
+        port: 7777
+
+```
