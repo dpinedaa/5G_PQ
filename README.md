@@ -560,3 +560,11 @@ upf:
 
 ```
 
+
+* Modify all the configs using the command below
+
+
+```bash
+find /open5gs/install/etc/open5gs -type f -exec sed -i 's/127\.0\.1\.10/10\.0\.0\.2/g' {} +
+```
+
