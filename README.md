@@ -359,7 +359,10 @@ nrf:
 
 
 
-
+```bash
+cd ~/5G_PQ/open5gs
+./install/bin/open5gs-scpd
+```
 
 
 
@@ -435,7 +438,7 @@ amf:
         full: Open5GS
     amf_name: open5gs-amf0
 
-    #.................
+#.................
 
     scp:
     sbi:
@@ -446,6 +449,12 @@ amf:
 
 ```
 
+* Start NF 
+
+```bash
+cd ~/5G_PQ/open5gs
+./install/bin/open5gs-amfd
+```
 
 
 
@@ -504,7 +513,7 @@ upf:
 
 
 
-    #.................
+#.................
 
     scp:
     sbi:
@@ -515,6 +524,12 @@ upf:
 
 ```
 
+* Start NF 
+
+```bash
+cd ~/5G_PQ/open5gs
+./install/bin/open5gs-smfd
+```
 
 
 
@@ -560,11 +575,31 @@ upf:
 
 ```
 
+* Start NF 
+
+```bash
+cd ~/5G_PQ/open5gs
+./install/bin/open5gs-upfd
+```
 
 * Modify all the configs using the command below
 
+```bash
+find open5gs/install/etc/open5gs -type f -exec sed -i 's/127\.0\.1\.10/10\.0\.0\.2/g' {} +
+```
+
+
+* Start all the other network functions 
+
 
 ```bash
-find /open5gs/install/etc/open5gs -type f -exec sed -i 's/127\.0\.1\.10/10\.0\.0\.2/g' {} +
+./install/bin/open5gs-ausfd 
+./install/bin/open5gs-udmd 
+./install/bin/open5gs-pcfd 
+./install/bin/open5gs-nssfd 
+./install/bin/open5gs-bsfd 
+./install/bin/open5gs-udrd 
 ```
+
+
 
