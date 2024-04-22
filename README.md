@@ -187,6 +187,67 @@ npm ci
 <!-- PHASE 3 -->
 ## Setup VPN over TLS
 
+### Client 
+
+* Unzip client 
+
+```bash
+cd 5G_PQ
+unzip client.zip
+```
+
+* Modify the config file 
+
+```bash
+cd client/vpn_over_tls/src/client/
+nano config.py
+```
+
+**REPLACE THE SERVER_IP BASED ON YOUR OWN ENVIRONMENT**
+
+```diff 
+config = {
+-	"SERVER_IP": "192.168.122.89",
++    "SERVER_IP": "192.168.122.238",
+	"SERVER_PORT": 443,
+	"USERNAME": "dmitriy",
+	"PASSWORD": "test",
+	"TUN_NAME": "tun1",
+	"SERVER_HOSTNAME": "strangebit.com",
+    "CA_CERTIFICATE": "./certificates/certchain.pem",
+	"BUFFER_SIZE": 1500,
+-   "DEFAULT_GW": "192.168.122.117",
+-	"DNS_SERVER": "192.168.122.89"
++	"DEFAULT_GW": "192.168.122.91",
++	"DNS_SERVER": "192.168.122.238"
+
+}
+
+```
+
+
+
+
+
+### Server 
+
+* Unzip Server
+
+```bash
+cd 5G_PQ
+unzip server.zip
+```
+
+
+
+
+
+
+
+
+
+
+
 * Copy what we have to the client and server vm 
 
 ```bash
