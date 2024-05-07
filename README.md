@@ -23,6 +23,10 @@ sudo apt-get install python3 python3-pip build-essential checkinstall zlib1g-dev
 sudo pip3 install python-pytun
 ```
 
+```bash
+git clone https://github.com/dpinedaa/5G_PQ.git
+```
+
 <!-- PHASE 2 -->
 ## Deploy Open5GS
 
