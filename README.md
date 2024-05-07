@@ -286,11 +286,11 @@ sudo chmod +x oqs.sh
 
 In this case the nrf will have the tls server
 
-* Unzip vpn_over_tls-multiclient
+* Unzip vpn_over_tls-master
 
 ```bash
-unzip vpn_over_tls-multiclient.zip
-cd vpn_over_tls-multiclient/vpn_over_tls-multiclient/src
+unzip vpn_over_tls-master.zip
+cd vpn_over_tls-master/vpn_over_tls-master/src
 ```
 
 * Modify the server config 
@@ -303,9 +303,11 @@ You can modify the TUN_ADDRESS if you want and certificates.
 
 ```diff
 config = {
-        "TUN_ADDRESS": "10.0.0.1",
+-        "TUN_ADDRESS": "192.168.122.1",
++        "TUN_ADDRESS": "10.0.0.1",        
         "TUN_NETMASK": "255.255.255.0",
-        "LISTEN_ADDRESS": "0.0.0.0",
+-        "LISTEN_ADDRESS": "0.0.0.0",
++        "LISTEN_ADDRESS": "192.168.122.117",        
         "LISTEN_PORT": 443,
         "TUN_NAME": "tun0",
         "TUN_MTU": 1500,
@@ -332,7 +334,7 @@ This will create an interface in your machine called tun0 which Ip address is 10
 * Modify the config file using a new terminal 
 
 ```bash
-cd 5G_PQ/open5gs/open5gs/
+cd ~/5G_PQ/open5gs/open5gs/
 nano install/etc/open5gs/nrf.yaml
 ```
 
@@ -415,11 +417,11 @@ Open5GS daemon v2.4.9-268-g739cb59+
 
 In this case the CP VM will have a TLS client and a TLS server. The client will communicate with the NRF while the server will be designated for the UERANSIM gNB.
 
-* Unzip vpn_over_tls-multiclient
+* Unzip vpn_over_tls-master
 
 ```bash
-unzip vpn_over_tls-multiclient.zip
-cd vpn_over_tls-multiclient/vpn_over_tls-multiclient/src
+unzip vpn_over_tls-master.zip
+cd vpn_over_tls-master/vpn_over_tls-master/src
 ```
 
 * Modify the server config. In this case the Tunel Address has to be different. For this case, it will be 10.0.1.1
@@ -459,14 +461,9 @@ This will create an interface in your machine called tun0 which Ip address is 10
 **Expected output**
 
 ```output
-cp@cp:~/5G_PQ/vpn_over_tls-multiclient/vpn_over_tls-multiclient/src$ sudo python3 server/server.py
+cp@cp:~/5G_PQ/vpn_over_tls-master/vpn_over_tls-master/src$ sudo python3 server/server.py
 [sudo] password for cp:
 net.ipv4.ip_forward = 1
-Reading from TUN
-Got data on tun interface
-b'\x00\x00\x86\xdd`\x00\x00\x00\x00\x08:\xff\xfe\x80\x00\x00\x00\x00\x00\x00\xc0<\xfc\xb4\xab|T\xd5\xff\x02\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x02\x85\x00\xbf\xf3\x00\x00\x00\x00'
-b'000086dd6000000000083afffe80000000000000c03cfcb4ab7c54d5ff0200000000000000000000000000028500bff300000000'
-192.60.252.180
 ```
 
 
@@ -476,7 +473,7 @@ b'000086dd6000000000083afffe80000000000000c03cfcb4ab7c54d5ff02000000000000000000
 * Open a New terminal 
 
 ```bash
-cd ~/5G_PQ/vpn_over_tls-multiclient/vpn_over_tls-multiclient/src
+cd ~/5G_PQ/vpn_over_tls-master/vpn_over_tls-master/src
 
 ```
 
