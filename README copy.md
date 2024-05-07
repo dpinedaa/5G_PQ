@@ -16,11 +16,11 @@ You can downgrade this later on. This is only to enable oqs in your ubuntu envir
 ## Install everything
 
 ```bash
-sudo apt-get install python3 python3-pip build-essential checkinstall zlib1g-dev cmake gcc libtool libssl-dev make ninja-build git astyle cmake gcc ninja-build libssl-dev python3-pytest python3-pytest-xdist unzip xsltproc doxygen graphviz python3-yaml valgrind wireshark net-tools traceroute systemd systemd-sysv dbus dbus-user-session -y
+  apt-get install python3 python3-pip build-essential checkinstall zlib1g-dev cmake gcc libtool libssl-dev make ninja-build git astyle cmake gcc ninja-build libssl-dev python3-pytest python3-pytest-xdist unzip xsltproc doxygen graphviz python3-yaml valgrind wireshark net-tools traceroute -y
 ```
 
 ```bash
-sudo pip3 install python-pytun
+  pip3 install python-pytun
 ```
 
 ```bash
@@ -47,36 +47,36 @@ unzip open5gs.zip
 * Import the public key used by the package management system.
 
 ```bash
-sudo apt update
-sudo apt install gnupg curl -y
+  apt update
+  apt install gnupg curl -y
 ```
 
 ```bash
-curl -fsSL https://pgp.mongodb.com/server-6.0.asc | sudo gpg -o /usr/share/keyrings/mongodb-server-6.0.gpg --dearmor
+curl -fsSL https://pgp.mongodb.com/server-6.0.asc |   gpg -o /usr/share/keyrings/mongodb-server-6.0.gpg --dearmor
 ```
 
 * Create the list file /etc/apt/sources.list.d/mongodb-org-6.0.list for your version of Ubuntu.
 
 ```bash
-echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-6.0.gpg] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
+echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-6.0.gpg] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/6.0 multiverse" |   tee /etc/apt/sources.list.d/mongodb-org-6.0.list
 ```
 
 * Install the MongoDB packages.
 
 
 ```bash 
-sudo apt update
+  apt update
 ```
 
 ```bash 
-sudo apt install -y mongodb-org
+  apt install -y mongodb-org
 ```
 ```bash 
-sudo systemctl start mongod
+  systemctl start mongod
 ```
 
 ```bash 
-sudo systemctl enable mongod
+  systemctl enable mongod
 ```
 
 
@@ -86,15 +86,15 @@ sudo systemctl enable mongod
 * Create the TUN device with the interface name ogstun.
 
 ```bash
-sudo ip tuntap add name ogstun mode tun
+  ip tuntap add name ogstun mode tun
 ```
 
 ```bash
-sudo ip addr add 10.45.0.1/16 dev ogstun
+  ip addr add 10.45.0.1/16 dev ogstun
 ```
 
 ```bash
-sudo ip link set ogstun up
+  ip link set ogstun up
 ```
 
 
@@ -104,7 +104,7 @@ sudo ip link set ogstun up
 * Install the dependencies for building the source code.
 
 ```bash
-sudo apt install python3-pip python3-setuptools python3-wheel ninja-build build-essential flex bison git cmake libsctp-dev libgnutls28-dev libgcrypt-dev libssl-dev libidn11-dev libmongoc-dev libbson-dev libyaml-dev libnghttp2-dev libmicrohttpd-dev libcurl4-gnutls-dev libnghttp2-dev libtins-dev libtalloc-dev meson -y 
+  apt install python3-pip python3-setuptools python3-wheel ninja-build build-essential flex bison git cmake libsctp-dev libgnutls28-dev libgcrypt-dev libssl-dev libidn11-dev libmongoc-dev libbson-dev libyaml-dev libnghttp2-dev libmicrohttpd-dev libcurl4-gnutls-dev libnghttp2-dev libtins-dev libtalloc-dev meson -y 
 ```
 
 * To compile with meson:
@@ -143,19 +143,19 @@ cd ../
 
 
 ```bash
-sudo apt update
+  apt update
 ```
 
 ```bash
-sudo apt install -y ca-certificates curl gnupg
+  apt install -y ca-certificates curl gnupg
 ```
 
 ```bash
-sudo mkdir -p /etc/apt/keyrings
+  mkdir -p /etc/apt/keyrings
 ```
 
 ```bash
-curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
+curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key |   gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg
 ```
 
 * Create deb repository
@@ -165,18 +165,18 @@ NODE_MAJOR=20
 ```
 
 ```bash
-echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" | sudo tee /etc/apt/sources.list.d/nodesource.list
+echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_$NODE_MAJOR.x nodistro main" |   tee /etc/apt/sources.list.d/nodesource.list
 ```
 
 # Run Update and Install
 
 
 ```bash
-sudo apt update
+  apt update
 ```
 
 ```bash
-sudo apt install nodejs -y
+  apt install nodejs -y
 ```
 
 * Install the dependencies to run WebUI
@@ -191,7 +191,7 @@ npm ci
 ## Deploy UERANSIM 
 
 ```bash
-sudo apt update && sudo apt upgrade -y 
+  apt update &&   apt upgrade -y 
 ```
 
 * Unzip UERANSIM 
@@ -205,9 +205,9 @@ cd UERANSIM
 * Install the required dependencies 
 
 ```bash 
-sudo apt remove cmake -y
-sudo apt install make gcc g++ libsctp-dev lksctp-tools iproute2 build-essential -y
-sudo snap install cmake --classic
+  apt remove cmake -y
+  apt install make gcc g++ libsctp-dev lksctp-tools iproute2 build-essential -y
+  snap install cmake --classic
 ```
 
 ## Build UERANSIM
@@ -224,7 +224,7 @@ make
 
 ```bash
 cd ..
-sudo chmod +x oqs.sh
+  chmod +x oqs.sh
 ./oqs.sh
 ```
 
@@ -321,7 +321,7 @@ config = {
 * Start the TLS tunnel server
 
 ```bash
-sudo python3 server/server.py
+  python3 server/server.py
 ```
 
 This will create an interface in your machine called tun0 which Ip address is 10.0.0.1.
@@ -451,7 +451,7 @@ config = {
 * Start the TLS tunnel server
 
 ```bash
-sudo python3 server/server.py
+  python3 server/server.py
 ```
 
 This will create an interface in your machine called tun0 which Ip address is 10.0.1.1
@@ -459,8 +459,8 @@ This will create an interface in your machine called tun0 which Ip address is 10
 **Expected output**
 
 ```output
-cp@cp:~/5G_PQ/vpn_over_tls-multiclient/vpn_over_tls-multiclient/src$ sudo python3 server/server.py
-[sudo] password for cp:
+cp@cp:~/5G_PQ/vpn_over_tls-multiclient/vpn_over_tls-multiclient/src$   python3 server/server.py
+[ ] password for cp:
 net.ipv4.ip_forward = 1
 Reading from TUN
 Got data on tun interface
@@ -518,7 +518,7 @@ config = {
 * Start the TLS tunnel client 
 
 ```bash
-sudo python3 client/client.py
+  python3 client/client.py
 ```
 
 
@@ -885,7 +885,7 @@ unzip server.zip
 
 ```bash
 cd vpn_over_tls/src
-sudo python3 server/server.py
+  python3 server/server.py
 ```
 
 
@@ -932,7 +932,7 @@ config = {
 * Install OQS in the system 
 
 ```bash
-sudo chmod +x oqs.sh
+  chmod +x oqs.sh
 ./oqs.sh
 ```
 
@@ -943,7 +943,7 @@ sudo chmod +x oqs.sh
 
 ```bash
 cd vpn_over_tls/src
-sudo python3 client/client.py
+  python3 client/client.py
 ```
 
 
