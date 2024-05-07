@@ -16,7 +16,8 @@ You can downgrade this later on. This is only to enable oqs in your ubuntu envir
 ## Install everything
 
 ```bash
-  apt-get install python3 python3-pip build-essential checkinstall zlib1g-dev cmake gcc libtool libssl-dev make ninja-build git astyle cmake gcc ninja-build libssl-dev python3-pytest python3-pytest-xdist unzip xsltproc doxygen graphviz python3-yaml valgrind wireshark net-tools traceroute -y
+apt update 
+apt-get install python3 python3-pip build-essential checkinstall zlib1g-dev cmake gcc libtool libssl-dev make ninja-build git astyle cmake gcc ninja-build libssl-dev python3-pytest python3-pytest-xdist unzip xsltproc doxygen graphviz python3-yaml valgrind wireshark net-tools traceroute iproute2 snapd -y
 ```
 
 ```bash
@@ -110,7 +111,7 @@ echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-6.0.gp
 * To compile with meson:
 
 ```bash
-cd open5gs/open5gs
+cd open5gs
 ```
 
 ```bash
@@ -207,8 +208,19 @@ cd UERANSIM
 ```bash 
   apt remove cmake -y
   apt install make gcc g++ libsctp-dev lksctp-tools iproute2 build-essential -y
-  snap install cmake --classic
 ```
+
+```bash
+cd ~/5G_PQ
+tar -zxvf cmake-3.21.3.tar.gz
+cd cmake-3.21.3
+./bootstrap
+make
+make install
+cmake --version
+
+```
+
 
 ## Build UERANSIM
 
@@ -227,6 +239,10 @@ cd ..
   chmod +x oqs.sh
 ./oqs.sh
 ```
+
+
+
+
 
 
 
