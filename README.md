@@ -3109,7 +3109,7 @@ cd ~/5G_PQ/UERANSIM
 
 
 
-#### Set Up VPN over TLS Client 
+#### Start VPN over TLS Client 
 
 In this case the UE docker will have a TLS client  only. The client will communicate with the UERANSIM gNB.
 
@@ -3117,7 +3117,7 @@ In this case the UE docker will have a TLS client  only. The client will communi
 * Initiate the docker container 
 
 ```bash
-docker run -dit --privileged --cap-add=NET_ADMIN --name ue --ip 192.168.120.11 --network 5g_pq ubuntu-5g:1.1 bash
+docker run -dit --privileged --cap-add=NET_ADMIN --name ue --ip 192.168.120.11 --network 5g_pq ue:latest bash
 ```
 
 * Access the docker container 
@@ -3135,39 +3135,6 @@ docker exec -ti ue bash
 
 ```bash
 cd ~/5G_PQ/vpn_over_tls-master/vpn_over_tls-master/src/
-```
-
-
-
-* Modify the client config. Match the Ip addresses based on your case. 
-
-
-```bash
-nano client/config.py
-```
-
-In this case:
-192.168.64.9 is the gNB IP address 
-192.168.64.8 is the UE Ip address
-Modify accordingly
-
-
-```diff
-config = {
--        "SERVER_IP": "192.168.64.9",
-+        "SERVER_IP": "192.168.120.8",      
-        "SERVER_PORT": 443,
-        "USERNAME": "dmitriy",
-        "PASSWORD": "test",
-        "TUN_NAME": "tun1",
-        "SERVER_HOSTNAME": "strangebit.com",
-        "CA_CERTIFICATE": "./certificates/certchain.pem",
-        "BUFFER_SIZE": 1500,
--        "DEFAULT_GW": "192.168.64.9",
--        "DNS_SERVER": "192.168.64.8"
-+        "DEFAULT_GW": "192.168.120.8",
-+        "DNS_SERVER": "192.168.120.9"
-}
 ```
 
 
@@ -3194,109 +3161,18 @@ Starting to read from tun device....
 
 
 
-### Setup UE UERANSIM
-
-* Modify the config file 
-
-#### UE
-
-```bash
-cd ~/5G_PQ/UERANSIM/config
- cp open5gs-ue.yaml open5gs-ue1.yaml
-nano open5gs-ue1.yaml
-```
+#### Start UE UERANSIM
 
 
-
-```diff
-# IMSI number of the UE. IMSI = [MCC|MNC|MSISDN] (In total 15 digits)
--supi: 'imsi-999700000000001'
-+supi: 'imsi-001010000000001'
-# Mobile Country Code value of HPLMN
--mcc: '999'
-+mcc: '001'
-# Mobile Network Code value of HPLMN (2 or 3 digits)
--mnc: '70'
-+mnc: '01'
-
-# Permanent subscription key
-key: '465B5CE8B199B49FAA5F0A2EE238A6BC'
-# Operator code (OP or OPC) of the UE
-op: 'E8ED289DEBA952E4283B54E88E6183CA'
-# This value specifies the OP type and it can be either 'OP' or 'OPC'
-opType: 'OPC'
-# Authentication Management Field (AMF) value
-amf: '8000'
-# IMEI number of the device. It is used if no SUPI is provided
-imei: '356938035643803'
-# IMEISV number of the device. It is used if no SUPI and IMEI is provided
-imeiSv: '4370816125816151'
-
-# List of gNB IP addresses for Radio Link Simulation
-gnbSearchList:
--  - 127.0.0.1
-+  - 10.0.2.1
-
-# UAC Access Identities Configuration
-uacAic:
-  mps: false
-  mcs: false
-
-# UAC Access Control Class
-uacAcc:
-  normalClass: 0
-  class11: false
-  class12: false
-  class13: false
-  class14: false
-  class15: false
-
-# Initial PDU sessions to be established
-sessions:
-  - type: 'IPv4'
-    apn: 'internet'
-    slice:
-      sst: 1
-
-# Configured NSSAI for this UE by HPLMN
-configured-nssai:
-  - sst: 1
-
-# Default Configured NSSAI for this UE
-default-nssai:
-  - sst: 1
-    sd: 1
-
-# Supported integrity algorithms by this UE
-integrity:
-  IA1: true
-  IA2: true
-  IA3: true
-
-# Supported encryption algorithms by this UE
-ciphering:
-  EA1: true
-  EA2: true
-  EA3: true
-
-# Integrity protection maximum data rate for user plane
-integrityMaxRate:
-  uplink: 'full'
-  downlink: 'full'
-
-```
-
-
-
-#### Start using the UE - UERANSIM 
+##### Start using the UE - UERANSIM 
 
 After completing configurations and setups, now you can start using UERANSIM.
 
 Run the following command to start the UE:
 
 ```bash 
-cd ..
-./build/nr-ue -c config/open5gs-ue1.yaml
+cd ~/5G_PQ/UERANSIM
+./build/nr-ue -c config/open5gs-ue1.yaml &
 ```
 
 
