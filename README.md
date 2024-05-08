@@ -1,6 +1,6 @@
 # Open5GS and TLS Tunnel using PQ certificates
 
-## Initial setup
+## Initial setup for VMs
 
 **Create three VMs with the following config:**
 
@@ -764,6 +764,10 @@ cd ~/5G_PQ/open5gs
 ```bash
 cd ~/5G_PQ/open5gs/open5gs
 find install/etc/open5gs -type f -exec sed -i 's/127\.0\.1\.10/10\.0\.0\.2/g' {} +
+find install/etc/open5gs -type f -exec sed -i 's/127\.0\.0\.10/10\.0\.0\.1/g' {} +
+find . -type f -exec sed -i 's/- ::1/#- ::1/g' {} +
+
+
 ```
 
 
@@ -771,8 +775,8 @@ find install/etc/open5gs -type f -exec sed -i 's/127\.0\.1\.10/10\.0\.0\.2/g' {}
 
 
 ```bash
-./install/bin/open5gs-ausfd 
-./install/bin/open5gs-udmd 
+./install/bin/open5gs-ausfd &
+./install/bin/open5gs-udmd  & 
 ./install/bin/open5gs-pcfd 
 ./install/bin/open5gs-nssfd 
 ./install/bin/open5gs-bsfd 
@@ -791,6 +795,12 @@ find install/etc/open5gs -type f -exec sed -i 's/127\.0\.1\.10/10\.0\.0\.2/g' {}
 ```bash
 find open5gs/install/etc/open5gs -type f -exec sed -i 's/10\.0\.0\.2/192\.168\.122\.97/g' {} +
 find open5gs/install/etc/open5gs -type f -exec sed -i 's/10\.0\.0\.1/192\.168\.122\.238/g' {} +
+
+
+
+find open5gs/install/etc/open5gs -type f -exec sed -i 's|db_uri: mongodb://localhost/open5gs|db_uri: mongodb://172.17.0.2/open5gs|g' {} +
+
+
 ```
 
 
