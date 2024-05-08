@@ -8,7 +8,7 @@ https://fiu.zoom.us/j/5641977519
 # Open5GS and TLS Tunnel using PQ certificates
 
 
-## DEPLOYING VMS
+# DEPLOYING VMS
 
 ### Initial setup for VMs
 
@@ -1409,7 +1409,7 @@ cd ..
 
 
 
-## Setup for Docker Container 
+# Setup for Docker Container 
 
 
 
@@ -2623,7 +2623,7 @@ find open5gs/install/etc/open5gs -type f -exec sed -i 's/10\.0\.0\.1/192\.168\.1
 
 
 
-## Use Docker Containers 
+# Use Docker Containers 
 
 
 ### Setup Mongodb 
