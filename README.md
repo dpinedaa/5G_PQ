@@ -1,3 +1,10 @@
+Diana Pineda Andrade is inviting you to a scheduled Zoom meeting.
+
+Topic: Diana Pineda Andrade's Personal Meeting Room
+
+Join Zoom Meeting
+https://fiu.zoom.us/j/5641977519
+
 # Open5GS and TLS Tunnel using PQ certificates
 
 
