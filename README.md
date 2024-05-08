@@ -3008,32 +3008,6 @@ TLS Server: 192.168.120.10
 cd ~/5G_PQ/vpn_over_tls-master/vpn_over_tls-master/src/
 ```
 
-* Modify the server config. In this case the Tunel Address has to be different. For this case, it will be 10.0.2.1
-
-```bash
-nano server/config.py
-```
-
-You can modify the TUN_ADDRESS if you want and certificates.
-
-```diff
-config = {
--        "TUN_ADDRESS": "192.168.120.177",
-+        "TUN_ADDRESS": "10.0.2.1",        
-        "TUN_NETMASK": "255.255.255.0",
--        "LISTEN_ADDRESS": "0.0.0.0",
-+        "LISTEN_ADDRESS": "192.168.120.10",
-        "LISTEN_PORT": 443,
-        "TUN_NAME": "tun0",
-        "TUN_MTU": 1500,
-        "BUFFER_SIZE": 1500,
-        "CERTIFICATE_CHAIN": "./certificates/certchain.pem",
-        "PRIVATE_KEY": "./certificates/private.pem",
-        "SALT": "WH!{*ewP]x}0RHoP9k|nu_L(R9jm*/:i"
-}
-```
-
-
 * Start the TLS tunnel server
 
 ```bash
