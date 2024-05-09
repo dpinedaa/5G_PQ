@@ -1,5 +1,7 @@
 # Setup for Docker Container 
 
+Docker images can be found here:
+https://fiudit-my.sharepoint.com/:f:/g/personal/dpine033_fiu_edu/EhLnywNdGolGsX5RNdrL_DsBCUy8bd_fyIb2IiALxM5hHQ?e=V4Stde 
 
 
 ### Setup Mongodb 
