@@ -1,0 +1,12 @@
+"""
+        Initialize OQS for KEM
+        """
+        self.kem_algorithm = config["KEM_ALGORITHM"]
+        self.kem = oqs.KeyEncapsulation(self.kem_algorithm)
+        self.public_key = self.kem.generate_keypair()
+
+    def encapsulate_key(self, peer_public_key):
+        return self.kem.encap_secret(peer_public_key)
+
+    def decapsulate_key(self, ciphertext):
+        return self.kem.decap_secret(ciphertext)
