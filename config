@@ -1,0 +1,13 @@
+config = {
+    "CA_CERTIFICATE": "path/to/ca_certificate.pem",
+    "SERVER_IP": "server_ip_address",
+    "SERVER_PORT": 12345,
+    "SERVER_HOSTNAME": "server_hostname",
+    "BUFFER_SIZE": 4096,
+    "DEFAULT_GW": "default_gateway",
+    "DNS_SERVER": "dns_server",
+    "USERNAME": "your_username",
+    "PASSWORD": "your_password",
+    "TUN_NAME": "tun0",
+    "KEM_ALGORITHM": "Kyber1024"
+}
